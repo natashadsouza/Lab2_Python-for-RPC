@@ -94,8 +94,8 @@ class CrimeCheckService(ServiceBase):
 
         checker1 = re.search(r'([\d\w\s]+ST) & ([\w\s\d]+ST)', address, re.IGNORECASE)
         if checker1:
-            check_street1 = checker.group(1)
-            check_street2 = checker.group(2)
+            check_street1 = checker1.group(1)
+            check_street2 = checker1.group(2)
 
             if not check_street1 in street_array:
                 street_array[check_street1] = 1
