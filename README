@@ -7,8 +7,8 @@ Input (HttpRpc)
 lat - latitude of a location
 lon - longitude of a location
 radius - radius distance in miles.
-curl "http://localhost:8000/checkcrime?lat=37.334164&lon=-121.884301&radius=0.02"
-Output (Json)
+Sample input: curl "http://localhost:8000/checkcrime?lat=37.334164&lon=-121.884301&radius=0.02"
+Sample Output (Json)
 
 {
     "total_crime" : 24,
