@@ -29,20 +29,14 @@ class CrimeCheckService(ServiceBase):
         crime_rec = "https://api.spotcrime.com/crimes.json?lat=%s&lon=%s&radius=%s&key=." % (lat, lon, radius)
 
         url_call = urllib2.urlopen(crime_rec)
-        res = response.read() #response read
-        json_data = json.loads[data_rec]
-        data_rec = json.load(json_data)
-        crimes = jsonList['crimes']
-        crime_count = len(crimes)
-        # data_rec = json.dumps(url_call.read())
-        # return data_rec
+        data_rec = json.load(url_call)
+        crimes = data_rec['crimes']
+        total_data = data_rec['crimes'] 
+        crime_count = len(total_data)
 
-        # return json_data
-        total_data = data_rec['crimes'] #total crimes
-
-        street_array = {} #dictof streets
-        dict_crime = {} #dicofcrimetype
-        scary_streets = [] #dangerous streets
+        street_array = {} 
+        dict_crime = {} 
+        scary_streets = [] 
         time_array = {'t1': 0, 't2': 0, 't3': 0, 't4': 0, 't5': 0, 't6': 0, 't7': 0, 't8': 0}
 
         t1 = time_array['t1']
