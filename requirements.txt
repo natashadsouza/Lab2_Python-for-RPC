@@ -1,0 +1,5 @@
+# These are all the requirements for this application
+python:2.7
+Spyne
+PyCharm
+requirements.txt
