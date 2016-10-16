@@ -136,7 +136,7 @@ class CrimeCheckService(ServiceBase):
 
         if dt1 <= crime_time <= dt2:
             time_array['t1'] += 1
-               return time_array
+            return time_array
 
         dt1 = datetime.datetime(y, m, d, 03, 01, 00)
         dt2 = datetime.datetime(y, m, d, 06, 00, 00)
