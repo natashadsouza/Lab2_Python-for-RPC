@@ -39,18 +39,6 @@ class CrimeCheckService(ServiceBase):
         scary_streets = [] 
         time_array = {'t1': 0, 't2': 0, 't3': 0, 't4': 0, 't5': 0, 't6': 0, 't7': 0, 't8': 0}
 
-        t1 = time_array['t1']
-        t2 = time_array['t2']
-        t3 = time_array['t3']
-        t4 = time_array['t4']
-        t5 = time_array['t5']
-        t6 = time_array['t6']
-        t7 = time_array['t7']
-        t8 = time_array['t8']
-        time_counter = {'12:01am-3am': t1, '3:01am-6:00am': t2, '6:01am-9:00am': t3, '9:01am-12noon': t4,
-                        '12:01pm-3pm': t5, '3:01pm-6pm': t6, '6:01pm-9pm': t7, '9:01pm-12midnight': t8}
-
-
         for crime in data_rec['crimes']:
 
             crime_type = crime['type']
@@ -61,20 +49,29 @@ class CrimeCheckService(ServiceBase):
 
             datecheck = crime['date']
             #crime_time = CrimeCheckService.check_crimeTime(datecheck)
-            crime_time = datetime.datetime.strptime(datecheck, "%m/%d/%y %I:%M %p")
-            CrimeCheckService.crimeOccur_time(crime_time, time_array)
+            #crime_time = datetime.datetime.strptime(datecheck, "%m/%d/%y %I:%M %p")
+            crime_time = CrimeCheckService.check_crimeTime(datecheck)
             CrimeCheckService.street_check(crime['address'], street_array)
-
+            CrimeCheckService.crimeOccur_time(crime_time, time_array)
         street_arrayFinal = dict(sorted(street_array.items(), key=operator.itemgetter(1), reverse=True)[:3])
 
         for key in street_arrayFinal:
             scary_streets.append(key)
 
+        t1 = time_array['t1']
+        t2 = time_array['t2']
+        t3 = time_array['t3']
+        t4 = time_array['t4']
+        t5 = time_array['t5']
+        t6 = time_array['t6']
+        t7 = time_array['t7']
+        t8 = time_array['t8']
+        time_counter = {'12:01am-3am': t1, '3:01am-6:00am': t2, '6:01am-9:00am': t3, '9:01am-12noon': t4,
+                        '12:01pm-3pm': t5, '3:01pm-6pm': t6, '6:01pm-9pm': t7, '9:01pm-12midnight': t8}
         time_check = {'total_crime': crime_count, 'the_most_dangerous_streets': scary_streets,
                       'crime_type_count': dict_crime,
                       'event_time_count': time_counter}
         return time_check
-
     @staticmethod
     def check_crimeTime(datecheck):
         date = datetime.datetime.strptime(datecheck, "%m/%d/%y %I:%M %p")
