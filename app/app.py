@@ -126,62 +126,62 @@ class CrimeCheckService(ServiceBase):
                 street_array[st] = street_array[st] + 1
             return street_array
 
+    @staticmethod
+    def crimeOccur_time(crime_time, time_array):
+        d = crime_time.day
+        m = crime_time.month
+        y = crime_time.year
+        dt1 = datetime.datetime(y, m, d, 00, 01, 00)
+        dt2 = datetime.datetime(y, m, d, 03, 00, 00)
 
-def crimeOccur_time(crime_time, time_array):
-    d = crime_time.day
-    m = crime_time.month
-    y = crime_time.year
-    dt1 = datetime.datetime(y, m, d, 00, 01, 00)
-    dt2 = datetime.datetime(y, m, d, 03, 00, 00)
+        if dt1 <= crime_time <= dt2:
+            time_array['t1'] += 1
+               return time_array
 
-    if dt1 <= crime_time <= dt2:
-        time_array['t1'] += 1
+        dt1 = datetime.datetime(y, m, d, 03, 01, 00)
+        dt2 = datetime.datetime(y, m, d, 06, 00, 00)
+
+        if dt1 <= crime_time <= dt2:
+            time_array['t2'] += 1
+            return time_array
+
+        dt1 = datetime.datetime(y, m, d, 06, 01, 00)
+        dt2 = datetime.datetime(y, m, d, 9, 00, 00)
+
+        if dt1 <= crime_time <= dt2:
+            time_array['t3'] += 1
+            return time_array
+
+        dt1 = datetime.datetime(y, m, d, 9, 01, 00)
+        dt2 = datetime.datetime(y, m, d, 12, 00, 00)
+
+        if dt1 <= crime_time <= dt2:
+            time_array['t4'] += 1
+            return time_array
+
+        dt1 = datetime.datetime(y, m, d, 12, 01, 00)
+        dt2 = datetime.datetime(y, m, d, 15, 00, 00)
+
+        if dt1 <= crime_time <= dt2:
+            time_array['t5'] = time_array['t5'] + 1
+            return time_array
+
+        dt1 = datetime.datetime(y, m, d, 15, 01, 00)
+        dt2 = datetime.datetime(y, m, d, 18, 00, 00)
+
+        if dt1 <= crime_time <= dt2:
+            time_array['t6'] = time_array['t6'] + 1
+            return time_array
+
+        dt1 = datetime.datetime(y, m, d, 18, 01, 00)
+        dt2 = datetime.datetime(y, m, d, 21, 00, 00)
+
+        if dt1 <= crime_time <= dt2:
+            time_array['t7'] = time_array['t7'] + 1
+            return time_array
+
+        time_array['t8'] = time_array['t8'] + 1
         return time_array
-
-    dt1 = datetime.datetime(y, m, d, 03, 01, 00)
-    dt2 = datetime.datetime(y, m, d, 06, 00, 00)
-
-    if dt1 <= crime_time <= dt2:
-        time_array['t2'] += 1
-        return time_array
-
-    dt1 = datetime.datetime(y, m, d, 06, 01, 00)
-    dt2 = datetime.datetime(y, m, d, 9, 00, 00)
-
-    if dt1 <= crime_time <= dt2:
-        time_array['t3'] += 1
-        return time_array
-
-    dt1 = datetime.datetime(y, m, d, 9, 01, 00)
-    dt2 = datetime.datetime(y, m, d, 12, 00, 00)
-
-    if dt1 <= crime_time <= dt2:
-        time_array['t4'] += 1
-        return time_array
-
-    dt1 = datetime.datetime(y, m, d, 12, 01, 00)
-    dt2 = datetime.datetime(y, m, d, 15, 00, 00)
-
-    if dt1 <= crime_time <= dt2:
-        time_array['t5'] = time_array['t5'] + 1
-        return time_array
-
-    dt1 = datetime.datetime(y, m, d, 15, 01, 00)
-    dt2 = datetime.datetime(y, m, d, 18, 00, 00)
-
-    if dt1 <= crime_time <= dt2:
-        time_array['t6'] = time_array['t6'] + 1
-        return time_array
-
-    dt1 = datetime.datetime(y, m, d, 18, 01, 00)
-    dt2 = datetime.datetime(y, m, d, 21, 00, 00)
-
-    if dt1 <= crime_time <= dt2:
-        time_array['t7'] = time_array['t7'] + 1
-        return time_array
-
-    time_array['t8'] = time_array['t8'] + 1
-    return time_array
 
 
 application = Application([CrimeCheckService],
